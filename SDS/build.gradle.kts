@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id("maven-publish")
 }
 
 android {
@@ -49,4 +50,18 @@ dependencies {
     implementation(libs.androidx.material3)
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
+}
+
+publishing{
+    publications{
+        register<MavenPublication>( "release" ){
+            groupId = "com.sbeen"
+            artifactId = "designsystem"
+            version = "1.0.0-alpha01"
+
+            afterEvaluate {
+                from(components[ "release" ])
+            }
+        }
+    }
 }
