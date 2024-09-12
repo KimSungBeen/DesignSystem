@@ -1,6 +1,22 @@
+publishing{
+    publications{
+        register<MavenPublication>( "release" ){
+            groupId = "com.sbeen"
+            artifactId = "designsystem"
+            version = "1.0.0-alpha03"
+
+            afterEvaluate {
+                from(components[ "release" ])
+            }
+        }
+    }
+}
+
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id("maven-publish")
 }
 
 android {
